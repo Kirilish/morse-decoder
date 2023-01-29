@@ -38,15 +38,15 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-  expr = expr.trim();
-  let refinedData = expr.split('   ');
+ morseCode = morseCode.trim();
+  let refinedData = morseCode.split('   ');
   let result = [];
   
   for (let i = 0; i < refinedData.length; i++) {
     let temp = refinedData[i].split(' ');
     for (let j = 0; j < temp.length; j++) {
-      if (EXPR[temp[j]]) {
-        result.push(EXPR[temp[j]]);
+      if (MORSE_CODE[temp[j]]) {
+        result.push(MORSE_CODE[temp[j]]);
       }
     }
     
