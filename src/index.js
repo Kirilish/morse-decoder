@@ -38,23 +38,19 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
- morseCode = morseCode.trim();
-  let refinedData = morseCode.split('   ');
-  let result = [];
-  
-  for (let i = 0; i < refinedData.length; i++) {
-    let temp = refinedData[i].split(' ');
-    for (let j = 0; j < temp.length; j++) {
-      if (MORSE_CODE[temp[j]]) {
-        result.push(MORSE_CODE[temp[j]]);
+     let str = "";
+    for (let i = 0; i < expr.length; i += 10) {
+        let morseLetter = expr.slice(i, i+10);
+        morseLetter = morseLetter.replace(/10/g, '.');
+        morseLetter = morseLetter.replace(/11/g, '-');
+        morseLetter = morseLetter.replace(/0/g, '');
+        if (morseLetter === '**********') {
+            str += " ";
+        } else {
+            str += MORSE_TABLE[morseLetter];
+        }
       }
-    }
-    
-    if (i !== refinedData.length - 1) {
-    result.push(' ');
-    }
-  }
-  return result.join('');
+    return str;
 }
 
 module.exports = {
